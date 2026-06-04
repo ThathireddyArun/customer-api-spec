@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: Customer 360 APIs
+version: v1
+baseUri: /api/v1
+
+/accounts:
+  get:
+    description: Get all accounts
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+                {
+                  "id": "001ABC",
+                  "name": "Acme Ltd"
+                }
+              ]
+
+/accounts/{id}:
+  get:
+    description: Get account by Id
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+                "id": "001ABC",
+                "name": "Acme Ltd"
+              }
