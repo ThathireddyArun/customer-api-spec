@@ -3,7 +3,17 @@ title: Customer 360 APIs
 version: v1
 baseUri: /api/v1
 
+traits:
+  client-id-required: !include traits/client-id-required.raml
+
+types:
+  Account: !include datatypes/Account.raml
+  Contact: !include datatypes/Contact.raml
+
 /accounts:
+  is:
+    - client-id-required
+
   get:
     description: Get all accounts
     responses:
@@ -11,15 +21,11 @@ baseUri: /api/v1
         body:
           application/json:
             type: Account[]
-            example:
-              [
-                {
-                  "id": "001ABC",
-                  "name": "Vibexo Tech"
-                }
-              ]
 
 /accounts/{id}:
+  is:
+    - client-id-required
+
   get:
     description: Get account by Id
     responses:
@@ -29,5 +35,27 @@ baseUri: /api/v1
             type: Account
             example: !include examples/account-example.json
 
-types:
-  Account: !include datatypes/Account.raml
+/contacts:
+  is:
+    - client-id-required
+
+  get:
+    description: Get all contacts
+    responses:
+      200:
+        body:
+          application/json:
+            type: Contact[]
+
+/contacts/{id}:
+  is:
+    - client-id-required
+
+  get:
+    description: Get contact by Id
+    responses:
+      200:
+        body:
+          application/json:
+            type: Contact
+            example: !include examples/contact-example.json
