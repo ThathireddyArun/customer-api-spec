@@ -9,6 +9,7 @@ traits:
 types:
   Account: !include datatypes/Account.raml
   Contact: !include datatypes/Contact.raml
+  Opportunity: !include datatypes/Opportunity.raml
 
 /accounts:
   is:
@@ -59,3 +60,28 @@ types:
           application/json:
             type: Contact
             example: !include examples/contact-example.json
+
+/opportunities:
+  is:
+    - client-id-required
+
+  get:
+    description: Get all opportunities
+    responses:
+      200:
+        body:
+          application/json:
+            type: Opportunity[]
+
+/opportunities/{id}:
+  is:
+    - client-id-required
+
+  get:
+    description: Get opportunity by Id
+    responses:
+      200:
+        body:
+          application/json:
+            type: Opportunity
+            example: !include examples/opportunity-example.json
