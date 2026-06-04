@@ -10,11 +10,12 @@ baseUri: /api/v1
       200:
         body:
           application/json:
+            type: Account[]
             example:
               [
                 {
                   "id": "001ABC",
-                  "name": "Acme Ltd"
+                  "name": "Vibexo Tech"
                 }
               ]
 
@@ -25,8 +26,8 @@ baseUri: /api/v1
       200:
         body:
           application/json:
-            example:
-              {
-                "id": "001ABC",
-                "name": "Acme Ltd"
-              }
+            type: Account
+            example: !include examples/account-example.json
+
+types:
+  Account: !include datatypes/Account.raml
